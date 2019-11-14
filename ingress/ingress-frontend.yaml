@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-frontend 
+  namespace: myistio
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: frontend.ikubernetes.io
+    http:
+      paths:
+      - path: /hello
+        backend:
+          serviceName: frontend 
+          servicePort: 80
