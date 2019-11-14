@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-kiali 
+  namespace: istio-system
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: kiali.ikubernetes.k8s
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kiali 
+          servicePort: 20001

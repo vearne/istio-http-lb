@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-prometheus 
+  namespace: istio-system
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: prometheus.ikubernetes.k8s
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prometheus 
+          servicePort: 9090

@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-grafana 
+  namespace: istio-system
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: grafana.ikubernetes.k8s
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana 
+          servicePort: 3000
