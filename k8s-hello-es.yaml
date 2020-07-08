@@ -1,29 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-v1
+  name: hello-es-v1
   labels:
-    app: frontend
+    app: hello-es
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: hello-es
       version: v1
   template:
     metadata:
       labels:
-        app: frontend
+        app: hello-es
         version: v1
     spec:
       containers:
-      - name: frontend
-        image: xiaorui/frontend
+      - name: hello-es
+        image: docker-harbor.itv.qiyi.domain/tv-test/hello-es
         imagePullPolicy: IfNotPresent
-        env:
-        - name: BACKEND
-          value: "http://backend"
         ports:
         - containerPort: 3001
 
@@ -32,13 +29,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: hello-es
   labels:
-    app: frontend
+    app: hello-es
     version: v1
 spec:
   selector:
-    app: frontend
+    app: hello-es
   ports:
   - name: http
     port: 80
